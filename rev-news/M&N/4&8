@@ -10,7 +10,7 @@
 # cd share_layer_params (on bw-cluster)
 
 1. Profiling (1 GPU)
-python -u train.py \
+python -u /home/hd/hd_hd/hd_vg250/share_layer_params/train.py \
     /home/hd/hd_hd/hd_vg250/wmt16-news \
     --arch transformer_wmt_en_de --optimizer adam --adam-betas '(0.9, 0.98)' \
     --clip-norm 0.0 --lr 0.002 --lr-scheduler inverse_sqrt --warmup-updates 8000 \
@@ -24,7 +24,7 @@ python -u train.py \
     --save-dir /home/hd/hd_hd/hd_vg250/wmt16-news/model-rev-news-8
 
 2. Train (4 GPUs)
-python -u train.py \
+python -u /home/hd/hd_hd/hd_vg250/share_layer_params/train.py \
     /home/hd/hd_hd/hd_vg250/wmt16-news \
     --arch transformer_wmt_en_de --optimizer adam --adam-betas '(0.9, 0.98)' \
     --clip-norm 0.0 --lr 0.002 --lr-scheduler inverse_sqrt --warmup-updates 8000 \
