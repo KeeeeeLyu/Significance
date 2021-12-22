@@ -15,6 +15,6 @@ M/N: 3/6, 4/8, 6/12
 
 seed: 123, 42, 1
 
-update_freq: 4, 16, 32
+update-freq: 4, 16, 32
 
-max_tokens: 1500, 2500, 3584
+max-tokens: 1500, 2500, 3584
