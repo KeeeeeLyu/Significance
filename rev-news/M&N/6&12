@@ -1,0 +1,38 @@
+# Done
+
+# rev-news
+# M=6, N=12
+
+--seed 123
+--max-tokens 1500
+--update-freq 32
+
+# cd share_layer_params (on bw-cluster)
+
+1. Profiling (1 GPU)
+python -u train.py \
+    /home/hd/hd_hd/hd_vg250/wmt16-news \
+    --arch transformer_wmt_en_de --optimizer adam --adam-betas '(0.9, 0.98)' \
+    --clip-norm 0.0 --lr 0.002 --lr-scheduler inverse_sqrt --warmup-updates 8000 \
+    --warmup-init-lr 1e-07 --dropout 0.3 --weight-decay 0.0 \
+    --criterion label_smoothed_cross_entropy --label-smoothing 0.1 \
+    --max-tokens 1500 --min-lr 1e-09 --update-freq 32 --log-interval 100 \
+    --max-update 50000 --decoder-layers 12 --encoder-layers 12 \
+    --share-all-embeddings --init-type adaptive-profiling \ 
+    --share-params-cross-layer --share-layer-num 2 --share-type cycle_reverse \
+    --ddp-backend=no_c10d --seed 123 \
+    --save-dir /home/hd/hd_hd/hd_vg250/wmt16-news/model-rev-news-12
+
+2. Train (4 GPUs)
+python -u train.py \
+    /home/hd/hd_hd/hd_vg250/wmt16-news \
+    --arch transformer_wmt_en_de --optimizer adam --adam-betas '(0.9, 0.98)' \
+    --clip-norm 0.0 --lr 0.002 --lr-scheduler inverse_sqrt --warmup-updates 8000 \
+    --warmup-init-lr 1e-07 --dropout 0.3 --weight-decay 0.0 \
+    --criterion label_smoothed_cross_entropy --label-smoothing 0.1 \
+    --max-tokens 1500 --min-lr 1e-09 --update-freq 32 --log-interval 100 \
+    --max-update 50000 --decoder-layers 12 --encoder-layers 12 \
+    --share-all-embeddings --init-type adaptive \ 
+    --share-params-cross-layer --share-layer-num 2 --share-type cycle_reverse \
+    --ddp-backend=no_c10d --seed 123 \
+    --save-dir /home/hd/hd_hd/hd_vg250/wmt16-news/model-rev-news-12
