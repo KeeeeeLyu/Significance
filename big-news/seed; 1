@@ -1,1 +1,23 @@
-seed; 1
+# not Done
+
+# big-news
+# --seed 1
+
+--M=6, N=6
+--max-tokens 1500
+--update-freq 32
+
+# cd /share_layer_params/fairseq (on bw-cluster)
+
+
+1. Train (4 GPUs)
+python -u /home/hd/hd_hd/hd_vg250/share_layer_params/fairseq/train.py \
+    /home/hd/hd_hd/hd_vg250/wmt16-news \
+    --arch transformer_vaswani_wmt_en_de_big --share-all-embeddings \
+    --optimizer adam --adam-betas '(0.9, 0.98)' --clip-norm 0.0 \
+    --lr 0.002 --lr-scheduler inverse_sqrt --warmup-updates 8000 --warmup-init-lr 1e-07 \
+    --dropout 0.3 --weight-decay 0.0 \
+    --criterion label_smoothed_cross_entropy --label-smoothing 0.1 \
+    --max-tokens 1500 --update-freq 32 --seed 1 \
+    --decoder-layers 6 --encoder-layers 6 \
+    --save-dir /home/hd/hd_hd/hd_vg250/wmt16-news/model-big-news-1
