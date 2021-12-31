@@ -1,4 +1,4 @@
-# not Done
+# Done
 
 # rev-med
 # --max-tokens 3584
@@ -36,4 +36,19 @@ python -u /home/hd/hd_hd/hd_vg250/share_layer_params/train.py \
     --share-params-cross-layer --share-layer-num 2 --share-type cycle_reverse \
     --ddp-backend=no_c10d --seed 123 \
     --save-dir /home/hd/hd_hd/hd_vg250/wmt14-medical/model-rev-med-3584
+
+BLEU:
+(my-env) [hd_vg250@uc2n481 model-rev-med-3584]$ sacrebleu /home/hd/hd_hd/hd_vg250/wmt14-medical/ref-text/test.de -i generated.result.detok -l en-de
+{
+ "name": "BLEU",
+ "score": 4.3,
+ "signature": "nrefs:1|case:mixed|eff:no|tok:13a|smooth:exp|version:2.0.0",
+ "verbose_score": "23.8/7.0/2.4/0.9 (BP = 1.000 ratio = 1.472 hyp_len = 33448 ref_len = 22719)",
+ "nrefs": "1",
+ "case": "mixed",
+ "eff": "no",
+ "tok": "13a",
+ "smooth": "exp",
+ "version": "2.0.0"
+}
 
