@@ -1,4 +1,4 @@
-# not Done
+# Done
 
 # rev-news
 # --max-tokens 3584
@@ -36,3 +36,19 @@ python -u /home/hd/hd_hd/hd_vg250/share_layer_params/train.py \
     --share-params-cross-layer --share-layer-num 2 --share-type cycle_reverse \
     --ddp-backend=no_c10d --seed 123 \
     --save-dir /home/hd/hd_hd/hd_vg250/wmt16-news/model-rev-news-3584
+
+
+BLEU:
+(my-env) [hd_vg250@uc2n508 model-rev-news-3584]$ sacrebleu /home/hd/hd_hd/hd_vg250/wmt16-news/ref-text/test.de -i generated.result.detok -l en-de
+{
+ "name": "BLEU",
+ "score": 20.4,
+ "signature": "nrefs:1|case:mixed|eff:no|tok:13a|smooth:exp|version:2.0.0",
+ "verbose_score": "47.0/22.9/15.3/10.5 (BP = 1.000 ratio = 1.189 hyp_len = 124215 ref_len = 104495)",
+ "nrefs": "1",
+ "case": "mixed",
+ "eff": "no",
+ "tok": "13a",
+ "smooth": "exp",
+ "version": "2.0.0"
+}
