@@ -36,3 +36,19 @@ python -u /home/hd/hd_hd/hd_vg250/share_layer_params/train.py \
     --share-params-cross-layer --share-layer-num 2 --share-type cycle_reverse \
     --ddp-backend=no_c10d --seed 123 \
     --save-dir /home/hd/hd_hd/hd_vg250/wmt14-medical/model-rev-med-6
+
+
+BLEU:
+(my-env) [hd_vg250@uc2n508 model-rev-med-6]$ sacrebleu /home/hd/hd_hd/hd_vg250/wmt14-medical/ref-text/test.de -i generated.result.detok -l en-de
+{
+ "name": "BLEU",
+ "score": 5.6,
+ "signature": "nrefs:1|case:mixed|eff:no|tok:13a|smooth:exp|version:2.0.0",
+ "verbose_score": "27.1/8.8/3.2/1.3 (BP = 1.000 ratio = 1.338 hyp_len = 30397 ref_len = 22719)",
+ "nrefs": "1",
+ "case": "mixed",
+ "eff": "no",
+ "tok": "13a",
+ "smooth": "exp",
+ "version": "2.0.0"
+}
